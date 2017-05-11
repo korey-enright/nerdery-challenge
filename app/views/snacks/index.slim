@@ -1,0 +1,36 @@
+h2 Snack List
+
+- if @suggested_snacks.length > 0
+  h3 Suggested Snacks
+    table.table
+      thead
+        tr
+          th Name
+          th Current Votes
+          th Vote!
+          th Last Purchased
+      tbody
+        - @suggested_snacks.each do |snack|
+          tr
+            td
+              = link_to snack.name, snack_path(snack)
+            td
+              = snack.votes.count
+            td 
+              a button
+            td
+              = snack.last_purchase_date
+- if @non_optional_snacks.length > 0
+  h3 Always Purchased Snacks
+    table.table
+      thead
+        tr
+          th Name
+          th Last Purchased
+      tbody
+        - @non_optional_snacks.each do |snack|
+          tr
+            td
+              = link_to snack.name, snack_path(snack)
+            td
+              = snack.last_purchase_date.strftime(%F)
