@@ -1,8 +1,10 @@
 h2 Snack List
 
-- if @suggested_snacks.length > 0
-  h3 Suggested Snacks
-    table.table
+.row
+  .columns.small-6.medium-8.large-10
+  - if @suggested_snacks.length > 0
+    h3 Suggested Snacks
+    table.suggested_table
       thead
         tr
           th Name
@@ -20,9 +22,11 @@ h2 Snack List
               a button
             td
               = snack.last_purchase_date
-- if @non_optional_snacks.length > 0
-  h3 Always Purchased Snacks
-    table.table
+.row
+  .columns.small-6.medium-8.large-10
+  - if @non_optional_snacks.length > 0
+    h3 Always Purchased Snacks
+    table.non_optional_table
       thead
         tr
           th Name
@@ -33,4 +37,4 @@ h2 Snack List
             td
               = link_to snack.name, snack_path(snack)
             td
-              = snack.last_purchase_date.strftime(%F)
+              = snack.last_purchase_date
