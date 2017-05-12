@@ -16,6 +16,9 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 # Use slim as a HTML substitute
 gem 'slim'
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Use Foundation as the framework
 gem 'foundation-rails'
 # Use Uglifier as compressor for JavaScript assets

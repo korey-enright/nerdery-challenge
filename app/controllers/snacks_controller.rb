@@ -29,8 +29,7 @@ class SnacksController < ApplicationController
 
   def vote
     snack = Snack.find(params[:id])
-    current_votes = current_user.votes.where("created_at > ?", Date.today.beginning_of_month).count
-    if current_votes > 3
+    if @current_votes > 3
       flash[:error] = "You have voted three times this month already"
     else
       flash[:success] = "You successfully voted for #{snack.name}"

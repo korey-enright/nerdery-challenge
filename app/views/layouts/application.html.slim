@@ -12,7 +12,15 @@ html lang="en"
 
   body
     = render partial: "layouts/header"
+    - if flash.present?
+      .messages
+        - flash.each do |type, msg|
+          .msg class= type.to_s
+            = msg.html_safe
+          .close
+            a href="#"
+              i X
     .row
       .columns.small-8.medium-10.large-12
-
+        
         == yield
