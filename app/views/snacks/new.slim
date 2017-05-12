@@ -1,16 +1,14 @@
 h2 New Suggestion
 .row
   .columns.large-4
-    - if current_user.snacks.last.created_at > Date.today.beginning_of_month
-      p You have already suggested a snack this month
-    - else
-      .suggestion-list
-          
-      .new_snack
-        = form_for @snack, url: {action: 'create'} do |f|
-          = f.hidden_field :suggested, value: true
-          = f.hidden_field :optional, value: true
-          = f.hidden_field :user_id, value: current_user.id
-          = render partial: 'form', locals: {f: f}
+    .suggestion-list
+        
+    .new_snack
+      = form_for @snack, url: {action: 'create'} do |f|
+        = f.hidden_field :suggested, value: true
+        = f.hidden_field :optional, value: true
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :suggested_at, value: DateTime.now
+        = render partial: 'form', locals: {f: f}
   
       

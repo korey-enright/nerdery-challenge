@@ -42,6 +42,6 @@ class SnacksController < ApplicationController
 
   def snack_params
     params.require(:snack).permit(:name, :purchase_locations, :optional,
-                                  :suggested, :user_id)
+                                  :suggested, :user_id, :suggested_at)
   end
 end

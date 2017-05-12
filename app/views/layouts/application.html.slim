@@ -17,9 +17,8 @@ html lang="en"
         - flash.each do |type, msg|
           .msg class= type.to_s
             = msg.html_safe
-          .close
-            a href="#"
-              i X
+          a.close href="#"
+              i.fa.fa-times
     .row
       .columns.small-8.medium-10.large-12
         

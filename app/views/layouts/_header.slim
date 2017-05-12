@@ -1,18 +1,21 @@
-.sticky  
-  nav.top-bar data-topbar="" role="navigation"
-    ul.title-area
-      li.name
-        h1
-          a href="/" Nerdery Snack List
-    section.top-bar-section  
-      ul.right
+.data-sticky-container  
+  .top-bar
+    .top-bar-title
+      span data-responsive-toggle="responsive-menu" data-hide-for="medium"
+        button.menu-icon.dark type="button" data-toggle=true
+      strong Nerdery Snack List
+    .top-bar-left
+      ul.menu
+        - if current_user
+        li
+          = link_to "Snack List", snacks_path
+        li
+          = link_to "Suggest a Snack", new_snack_path
+    .top-bar-right  
+      ul.menu
         - if current_user
           li
-            = link_to "Snack List", snacks_path
-          li
-            = link_to "Suggest a Snack", new_snack_path
-          li
-            = link_to "Log Out", destroy_user_session_path
+            = link_to "Log Out", destroy_user_session_path, method: :delete
           li
             = "Votes Remaining this month: #{3 - @current_votes}"
         - else
@@ -20,4 +23,4 @@
             = link_to "Log In", new_user_session_path
           li
             = link_to "Create an Account", new_user_registration_path
-            
+              

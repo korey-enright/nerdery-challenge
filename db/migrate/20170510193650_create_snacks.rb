@@ -7,7 +7,8 @@ class CreateSnacks < ActiveRecord::Migration[5.1]
       t.datetime   :last_purchase_date, default: nil
       t.boolean    :optional,           default: false
       t.boolean    :suggested,          default: false
-      t.references :user, index: true, foreign_key: true, null: false
+      t.references :user,               index: true, foreign_key: true, null: false
+      t.datetime   :suggested_at,       default: nil
 
       t.timestamps
     end
