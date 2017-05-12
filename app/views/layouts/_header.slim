@@ -1,0 +1,19 @@
+header
+  div.header-interior
+    h1
+      a href="/" Nerdery Snack List
+    nav
+      ul
+        - if current_user
+          li
+            = link_to "Snack List", snacks_path
+          li
+            = link_to "Suggest a Snack", new_snack_path
+          li
+            = link_to "Log Out", destroy_user_session_path
+        - else
+          li
+            = link_to "Log In", new_user_session_path
+          li
+            = link_to "Create an Account", new_user_registration_path
+            

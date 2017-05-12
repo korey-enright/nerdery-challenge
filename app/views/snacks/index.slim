@@ -19,7 +19,7 @@ h2 Snack List
             td
               = snack.votes.count
             td 
-              a button
+              = link_to "Vote", vote_snack_path(snack), method: :post
             td
               = snack.last_purchase_date
 .row

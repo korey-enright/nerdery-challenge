@@ -17,13 +17,15 @@ ActiveRecord::Schema.define(version: 20170510193730) do
 
   create_table "snacks", force: :cascade do |t|
     t.string "name"
-    t.string "purchase_locations"
-    t.integer "purchase_count"
+    t.string "purchase_locations", default: ""
+    t.integer "purchase_count", default: 0
     t.datetime "last_purchase_date"
-    t.boolean "optional"
-    t.boolean "suggested"
+    t.boolean "optional", default: false
+    t.boolean "suggested", default: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_snacks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170510193730) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
+  add_foreign_key "snacks", "users"
   add_foreign_key "votes", "snacks"
   add_foreign_key "votes", "users"
 end
