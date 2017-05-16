@@ -2,7 +2,7 @@ h2 New Suggestion
 .row
   .columns.large-4
     .suggestion-list
-      = form_for @suggested_snack, url: suggest_snacks_path, method: post do |f|
+      = form_for @suggested_snack, url: suggest_snacks_path, method: :post do |f|
         = f.hidden_field :user_id, value: current_user.id
         = f.hidden_field :suggested, value: true
         = f.hidden_field :suggested_at, value: DateTime.now

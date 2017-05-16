@@ -5,7 +5,11 @@ class NerderySnackApiService
   end
 
   def get_snack_list
-    response = RestClient.get(@url, {Authorization: "ApiKey " + @key})
+    begin
+      response = RestClient.get(@url, { Authorization: "ApiKey " + @key })
+    rescue RestClient::ExceptionWithResponse => error
+      error.response.to_s
+    end
     data = JSON.parse(response.body)
     data.each do |snack|
       fixed_snack = snack.transform_keys do |key|
@@ -16,8 +20,14 @@ class NerderySnackApiService
     end
   end
 
-  def add_suggestion
-
+  def add_suggestion(snack)
+    payload = { name: snack.name, location: snack.purchase_locations }
+    payload = JSON.generate(payload)
+    begin
+      response = RestClient.post(@url, payload, { content_type: :json, Authorization: "ApiKey " + @key })
+    rescue RestClient::ExceptionWithResponse => error
+      error.response.to_s
+    end
   end
 
   private
