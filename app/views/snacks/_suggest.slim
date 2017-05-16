@@ -1,0 +1,6 @@
+.suggest-form
+  .attribute
+    = f.label "Snack"
+    = f.select :name, options_for_select(@suggestable_snacks.name)
+  
+  = f.submit "Suggest"

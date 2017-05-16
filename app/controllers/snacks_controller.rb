@@ -13,6 +13,7 @@ class SnacksController < ApplicationController
   def new
     # NerderySnackApiService.new.get_snack_list
     @suggestable_snacks = Snack.where("suggested = false AND optional = true")
+    @suggested_snack = Snack.new
     @snack = Snack.new
   end
 
@@ -29,13 +30,17 @@ class SnacksController < ApplicationController
 
   def vote
     snack = Snack.find(params[:id])
-    if @current_votes > 3
+    if @current_votes >= 3
       flash[:error] = "You have voted three times this month already"
     else
       flash[:success] = "You successfully voted for #{snack.name}"
       Vote.create(snack: snack, user: current_user)
     end
     redirect_to snacks_path
+  end
+
+  def suggest
+
   end
 
   private
